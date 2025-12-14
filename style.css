@@ -7,13 +7,13 @@
     box-sizing: border-box;
 }
 :root{
-    --color-pink: #feecea;
-    --color-white: #fff;
+    --color-pink: #feeafc;
+    --color-white: #ffffff;
     --color-black: #333;
-    --color-text-pink: #FF7882;
-    --color-heart: #FF7882;
-    --color-bg-letter: #fff8e4;
-    --color-border: #DACCBF;
+    --color-text-pink: #ff78e2;
+    --color-heart: #ff78c2;
+    --color-bg-letter: #ffe4f7;
+    --color-border: #dabfd0;
 }
 html{
     height: 100%;
@@ -93,6 +93,28 @@ body {
     transform: scale(1);
     transition: all .5s ease-in-out;
 }
+.btn-like-letter {
+    position: relative;
+    margin-top: 5px;
+    background-color: var(--color-text-pink);
+    outline: none;
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 50px;
+    border: 3px solid var(--color-black);
+    font-family: "Sriracha", cursive;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all .5s ease-in-out;
+}
+
+.btn-like-letter i {
+    margin-left: 20px;
+}
+
 #btn__letter:active{
     transform: scale(0.7);
 }
@@ -164,19 +186,19 @@ body {
 .title .hat{
     position: absolute;
     right: 45px;
-    top: -350px;
+    top: -550px;
     transform: rotate(-40deg);
     z-index: -1;
     animation: topHat 4s 7s forwards ease;
 }
 @keyframes topHat{
     20%, 30%{
-        top: -30px;
+        top: -130px;
         transform-origin: left;
         transform: rotate(-40deg);
     }
     35%, 100%{
-        top: -30px;
+        top: -130px;
         transform: rotate(0deg);
     }
 }
@@ -186,7 +208,7 @@ body {
     align-items: center;
     background-color: var(--color-text-pink);
     border-radius: 50px;
-    margin-top: 20px;
+    margin-top: 0px;
     font-family: "Sriracha", cursive;
     
 }
@@ -239,6 +261,7 @@ body {
 }
 .name span{
     font-size: 1.7rem;
+    font-style: normal;
 }
 .right .box__account{
     position: relative;
@@ -268,12 +291,16 @@ body {
 .cricle{
     position: absolute;
     top: 20px;
-    right: 50px;
+    right: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     transform: scale(0);
-    animation: scaleCricle 3s 15s forwards ease-in-out;
+    animation: scaleCricle 3s 15s forwards ease-in-out,rotateCircle 6s linear infinite 16s;
+}
+.cricle img {
+    width: 100px;   /* 你可以改这个大小 */
+    height: auto;
 }
 @keyframes scaleCricle {
     0%{
@@ -301,10 +328,9 @@ body {
     align-items: center;
     animation: rotateCricle 5s linear infinite;
 }
-@keyframes rotateCricle{
-    to{
-        transform: rotate(360deg);
-    }
+@keyframes rotateCircle {
+    from { transform: scale(1) rotate(0deg); }
+    to   { transform: scale(1) rotate(360deg); }
 }
 .text__cricle span{
     top: 0%;
@@ -333,8 +359,8 @@ body {
 }
 .right .balloon_one{
     position: absolute;
-    top: -70px;
-    left: -70px;
+    top: -100px;
+    left: -100px;
     animation: balloon1 2s infinite linear;
 }
 @keyframes balloon1{
@@ -353,8 +379,8 @@ body {
 }
 .right .balloon_two{
     position: absolute;
-    top: 170px;
-    right: -65px;
+    top: 200px;
+    right: -100px;
     z-index: -1;
     transform: rotate(10deg);
     animation: balloon2 2s infinite linear;
@@ -448,7 +474,7 @@ body {
 }
 .smiley__icon{
     position: absolute;
-    bottom: 180px;
+    bottom: 80px;
     left: 600px;
     transform: scale(0);
     animation: scaleCricle 3s 15s forwards ease-in-out;
@@ -501,7 +527,7 @@ body {
 }
 .letter__border .letter .title__letter{
     text-align: center;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     font-size: 2.4rem;
 }
@@ -594,7 +620,7 @@ body {
 .content__letter .right .text__letter{
     margin-top: 60px;
     padding: 20px 15px 10px 15px;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
 }
 .content__letter .right #mewmew{
@@ -656,7 +682,7 @@ body {
         width: 100%;
         display: flex;
         justify-content: center;
-        font-family: "Titan One", sans-serif;
+        font-family: 'Poppins', sans-serif;
         font-size: 1.5rem;
         letter-spacing: 8px;
         flex-direction: column;
@@ -673,7 +699,7 @@ body {
         font-size: 1rem;
         border-radius: 50px;
         border: 3px solid var(--color-black);
-        font-family: "Sriracha", cursive;
+        font-family: 'Poppins', sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -797,6 +823,48 @@ body {
 
 }
 
+/* 弹窗遮罩 */
+.boxGallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none; /* 默认隐藏 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow-y: auto; /* 允许上下滚动 */
+    padding: 20px;
+}
+
+/* 弹窗内容 */
+.boxGallery-content {
+    background: #fff;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+/* 关闭按钮 */
+.closeGallery {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* 内容区可滚动 */
+.gallery-text {
+    max-height: 70vh;
+    overflow-y: auto;
+}
 
 
 
@@ -843,6 +911,7 @@ body {
 }
 .boxMail .boxMail-container .card1,
 .boxMail .boxMail-container .card2{
+    line-height: 1.9;     /* ⭐ 推荐 1.8 ~ 2.1 */
     position: absolute;
     width: 100%;
     height: 100%;
@@ -855,7 +924,7 @@ body {
     position: absolute;
     width: 50%;
     height: 100%;
-    background: linear-gradient(to right, #FF7882, #FF7882 63%);
+    background: linear-gradient(to right, #f878ff, #ff78fb 63%);
     color: white;
     display: flex;
     justify-content: center;
@@ -876,7 +945,7 @@ body {
     background-color: white;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid white;
+    border: 1px solid white;
     cursor: pointer;
     margin-bottom: 20px;
 }
@@ -887,7 +956,7 @@ body {
     height: calc(100%);
 }
 .boxMail .boxMail-container .card1 h3{
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Ma Shan Zheng', 'Dancing Script', cursive;
     font-size: 40px;
     text-transform: uppercase;
     width: 80%;
@@ -896,7 +965,7 @@ body {
     letter-spacing: 5px;
     transform: rotate(-5deg);
     text-shadow: 0 0 5px white,
-                0 0 10px white;
+                0 0 5px white;
 }
 .boxMail .boxMail-container .card2{
     position: relative;
@@ -912,10 +981,10 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: #FF7882;
+    background-color: #e771ef;
     transition: all 1s;
     overflow: hidden;
-    font-family: "Inter", serif;
+    font-family: 'Ma Shan Zheng', 'Dancing Script', cursive;
     color: #fff;
 }
 .boxMail .boxMail-container:hover .card2-content{
@@ -923,12 +992,12 @@ body {
     box-shadow: -1px -1px 5px rgb(0, 0, 0, 0.4);
 }
 .boxMail .boxMail-container .card2 h3{
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Ma Shan Zheng', 'Dancing Script', cursive;
     padding: 20px 0px 10px 60px;
     opacity: 0;
     visibility: hidden;
     font-size: 25px;
-    text-shadow: 0 0 8px #FF7882;
+    text-shadow: 0 0 8px #ff78ff;
 }
 .boxMail .boxMail-container .card2:hover h3{
     animation: texth3 3s forwards;
@@ -948,15 +1017,15 @@ body {
     }
 }
 .boxMail .boxMail-container .card2 h2{
-    font-family: 'Dancing Script', cursive;
+
     padding: 0px 20px;
     text-indent: 20px;
-    font-size: 22px;
+    font-size: 18px;
     opacity: 0;
 }
 .boxMail .boxMail-container .card2:hover h2{
     animation: texth2 2s forwards;
-    animation-delay: 4s;
+    animation-delay: 3s;
     transition: 1s;
 }
 @keyframes texth2{
@@ -1022,4 +1091,7 @@ body {
     cursor: pointer;
     color: white;
     z-index: 10000000000000000;
+}
+.boxGallery.active {
+    display: flex;
 }
